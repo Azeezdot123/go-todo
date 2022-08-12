@@ -5,7 +5,7 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - name: start the mongodb Server
+  - name: Start the mongodb Server
     init: |
       mkdir -p /workspace/data && mongod --dbpath /workspace/data
 
@@ -18,4 +18,6 @@ tasks:
 ports:
   - port: 9000
     onOpen: open-browser
+    visibility: public
+    
   - port: 27017
