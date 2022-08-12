@@ -5,7 +5,8 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: mkdir -p /workspace/data && mongod --dbpath /workspace/data && go get && go build ./... 
+  - before: mkdir -p /workspace/data && mongod --dbpath /workspace/data
+    init: go get && go build ./... 
     command: go run ./...
 
 ports:
