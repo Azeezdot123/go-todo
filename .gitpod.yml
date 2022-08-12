@@ -5,12 +5,17 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - before: mkdir -p /workspace/data && mongod --dbpath /workspace/data
-    init: go get && go build ./... 
-    command: go run ./...
+  - name: start the mongodb Server
+    init: |
+      mkdir -p /workspace/data && mongod --dbpath /workspace/data
+
+  - name: Start the server
+    init: go get && go build ./...
+    command: |
+      gp ports await 27017
+      go run ./...
 
 ports:
   - port: 9000
     onOpen: open-browser
   - port: 27017
-    onOpen: open-browser
